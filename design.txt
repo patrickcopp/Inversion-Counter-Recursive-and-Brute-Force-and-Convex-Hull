@@ -1,0 +1,154 @@
+1.1:
+
+inversions=0
+for n=0->size-1 do:
+	for m=n+1->size do:
+		if n>m:
+			inversions++;
+
+number of executions of n>m:
+	sum of n-1,n-2,n-3...1
+	=(n-1)(n)/2
+	=(n^2-n)/2
+	O(n^2)
+
+
+1.2:
+
+mergesort(array[0-n-1],temp[0-n-1],left (0),right (size-1))
+
+	if right>left
+		mid = (right + left) / 2;
+    		inv_count = mergeSort(arr, temp, left, mid);
+    		inv_count += mergeSort(arr, temp, mid + 1, right);
+    		inv_count += merge(arr, temp, left, mid + 1, right);
+
+	return inv_count
+
+int merge(int arr[], int temp[], int left, int mid, int right)
+	inv_count = 0;
+	i = left;
+	j = mid;
+	k = left;
+
+	while ((i <= mid - 1) && (j <= right))
+	
+		if (arr[i] <= arr[j])
+      			temp[k++] = arr[i++]
+    
+    		else
+      			temp[k++] = arr[j++]
+      			inv_count = inv_count + (mid - i)
+
+  
+  	while (i <= mid - 1)
+    		temp[k++] = arr[i++]
+
+  	while (j <= right)
+    		temp[k++] = arr[j++]
+  
+ 	for (i = left; i < right; i++)
+    		arr[i] = temp[i] 
+        
+  
+    	return inv_count
+
+Algorithm Source:
+https://www.geeksforgeeks.org/counting-inversions/
+
+
+Master Theorem
+
+	C=2*C(n/2)+n-1
+	f(n)=n-1 O(n)
+	a=2 b=2 d=1
+	C E O(nlogn)
+
+
+Comparison:
+
+
+	Over the course of 50000 values, the difference between n^2 and nlogn is vs. 780,000 2,500,000,000
+	That is why the difference in time is around 1000 times faster to use the mergesort.
+
+
+
+
+
+2.1
+
+for(int i=0;i<30000;i++)
+
+	for(int j=0;j<30000;j++)
+      		if(i==j)continue
+      		left=true
+
+      		for(int k=0;k<30000;k++)
+      
+        		if(k==i || k==j)continue
+        		x1=values[i][0]
+        		y1=values[i][1]
+        		x2=values[j][0]
+        		y2=values[j][1]
+        		x3=values[k][0]
+        		y3=values[k][1]
+        		newLine=((x3-x1)*(y2-y1)-((y3-y1)*(x2-x1)))
+        	if(newLine>0)
+          		left=false;
+          		break;
+       
+      if(left)
+        if(dupCheck(values,returns,j,vertexCount+1))
+          returns[vertexCount]=j;
+          vertexCount++;
+        
+      
+5 operations each time, n^3 times
+	5n^3
+	O(n^3)
+
+
+
+2.2
+Merging left and right hulls takes O(n) time.
+We are dividing the points into 2 equal parts (logn).
+
+Master Class: 
+	C=2*C(n/2)+n-1
+	f(n)=n-1 O(n)
+	a=2 b=2 d=1
+	C E O(nlogn)
+
+This gives us a complexity of O(nlogn).
+
+
+
+
+
+
+Comparison:
+
+
+	Over the course of 30000 values, the difference between n^3 and nlogn is vs. 444,000 27,000,000,000,000
+	That is why the difference in time is around 100,000 times faster to use the convexhull divide and conquer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
